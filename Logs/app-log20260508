@@ -1,0 +1,117 @@
+
+
+
+2026-05-08 18:25:18 [Information] Application Started
+2026-05-08 18:28:31 [Error] Error Occured.
+System.Exception: Boom! This is a test exception from the controller.
+   at devops.Controllers.AuthController.Crash()
+   at lambda_method4(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at devops.Middlewares.GlobalExceptionMiddleware.Invoke(HttpContext httpContext)
+2026-05-08 20:58:59 [Information] Application Started
+2026-05-08 21:00:57 [Information] Application Started
+2026-05-08 21:02:52 [Information] Application Started
+2026-05-08 21:08:32 [Information] Application Started
+2026-05-08 21:08:34 [Fatal] Application start-up failed
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: devops.Repository.IAuthRepository Lifetime: Scoped ImplementationType: devops.Repository.AuthRepository': Unable to resolve service for type 'devops.Helpers.SqlHelper' while attempting to activate 'devops.Repository.AuthRepository'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: devops.Repository.IAuthRepository Lifetime: Scoped ImplementationType: devops.Repository.AuthRepository': Unable to resolve service for type 'devops.Helpers.SqlHelper' while attempting to activate 'devops.Repository.AuthRepository'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'devops.Helpers.SqlHelper' while attempting to activate 'devops.Repository.AuthRepository'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in D:\workspace\Project Testing\Project 02\backend\devops\Program.cs:line 51
+2026-05-08 21:08:50 [Information] Application Started
+2026-05-08 21:08:53 [Fatal] Application start-up failed
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: devops.Repository.IAuthRepository Lifetime: Scoped ImplementationType: devops.Repository.AuthRepository': Unable to resolve service for type 'devops.Helpers.SqlHelper' while attempting to activate 'devops.Repository.AuthRepository'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: devops.Repository.IAuthRepository Lifetime: Scoped ImplementationType: devops.Repository.AuthRepository': Unable to resolve service for type 'devops.Helpers.SqlHelper' while attempting to activate 'devops.Repository.AuthRepository'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'devops.Helpers.SqlHelper' while attempting to activate 'devops.Repository.AuthRepository'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in D:\workspace\Project Testing\Project 02\backend\devops\Program.cs:line 51
+2026-05-08 21:09:47 [Information] Application Started
+2026-05-08 21:09:48 [Fatal] Application start-up failed
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: devops.Repository.IAuthRepository Lifetime: Scoped ImplementationType: devops.Repository.AuthRepository': Unable to resolve service for type 'devops.Helpers.SqlHelper' while attempting to activate 'devops.Repository.AuthRepository'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: devops.Repository.IAuthRepository Lifetime: Scoped ImplementationType: devops.Repository.AuthRepository': Unable to resolve service for type 'devops.Helpers.SqlHelper' while attempting to activate 'devops.Repository.AuthRepository'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'devops.Helpers.SqlHelper' while attempting to activate 'devops.Repository.AuthRepository'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in D:\workspace\Project Testing\Project 02\backend\devops\Program.cs:line 51
+2026-05-08 21:10:04 [Information] Application Started
+2026-05-08 21:10:53 [Information] Application Started
+2026-05-08 22:47:50 [Information] Application Started
+2026-05-08 22:50:38 [Information] Application Started
+2026-05-08 22:51:23 [Error] ExecuteCommandAsync query execution error
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+   at System.Data.Common.DbConnection.OpenAsync()
+   at devops.Helpers.SqlHelper.ExecuteCommandAsync(String query, Dictionary`2 parameters) in D:\workspace\Project Testing\Project 02\backend\devops\Helpers\SqlHelper.cs:line 20
+2026-05-08 22:51:31 [Error] RegisterUserAsync FN
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+   at System.Data.Common.DbConnection.OpenAsync()
+   at devops.Helpers.SqlHelper.ExecuteCommandAsync(String query, Dictionary`2 parameters) in D:\workspace\Project Testing\Project 02\backend\devops\Helpers\SqlHelper.cs:line 20
+   at devops.Repository.AuthRepository.RegisterUserAsync(Registration registration) in D:\workspace\Project Testing\Project 02\backend\devops\Repository\AuthRepository.cs:line 49
+2026-05-08 22:57:00 [Information] Application Started
+2026-05-08 23:09:36 [Information] Application Started
+2026-05-08 23:13:45 [Information] Application Started
+2026-05-08 23:15:25 [Information] Application Started
+2026-05-08 23:16:16 [Error] ExecuteCommandAsync query execution error
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Data.SqlClient.SqlCommand.get_Parameters()
+   at devops.Helpers.SqlHelper.ExecuteCommandAsync(String query, Dictionary`2 parameters) in D:\workspace\Project Testing\Project 02\backend\devops\Helpers\SqlHelper.cs:line 30
+2026-05-08 23:16:18 [Error] RegisterUserAsync FN
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Data.SqlClient.SqlCommand.get_Parameters()
+   at devops.Helpers.SqlHelper.ExecuteCommandAsync(String query, Dictionary`2 parameters) in D:\workspace\Project Testing\Project 02\backend\devops\Helpers\SqlHelper.cs:line 30
+   at devops.Repository.AuthRepository.RegisterUserAsync(Registration registration) in D:\workspace\Project Testing\Project 02\backend\devops\Repository\AuthRepository.cs:line 49

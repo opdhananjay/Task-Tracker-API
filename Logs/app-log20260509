@@ -1,0 +1,61 @@
+2026-05-09 21:11:16 [Information] Application Started
+2026-05-09 21:14:25 [Information] Application Started
+2026-05-09 21:15:03 [Error] Error Occured.
+System.InvalidOperationException: Connection string 'Default' not found or is empty in configuration.
+   at devops.Helpers.SqlHelper..ctor(IConfiguration configuration) in D:\workspace\Project Testing\Project 02\backend\devops\Helpers\SqlHelper.cs:line 15
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Span`1& arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at lambda_method10(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass7_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at devops.Middlewares.GlobalExceptionMiddleware.Invoke(HttpContext httpContext) in D:\workspace\Project Testing\Project 02\backend\devops\Middlewares\GlobalExceptionMiddleware.cs:line 18
+2026-05-09 21:16:24 [Information] Application Started
+2026-05-09 21:18:48 [Error] ExecuteCommandAsync query execution error
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+   at System.Data.Common.DbConnection.OpenAsync()
+   at devops.Helpers.SqlHelper.ExecuteCommandAsync(String query, SqlParameter[] parameters) in D:\workspace\Project Testing\Project 02\backend\devops\Helpers\SqlHelper.cs:line 27
+2026-05-09 21:18:51 [Error] RegisterUserAsync FN
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+   at System.Data.Common.DbConnection.OpenAsync()
+   at devops.Helpers.SqlHelper.ExecuteCommandAsync(String query, SqlParameter[] parameters) in D:\workspace\Project Testing\Project 02\backend\devops\Helpers\SqlHelper.cs:line 27
+   at devops.Repository.AuthRepository.RegisterUserAsync(Registration registration) in D:\workspace\Project Testing\Project 02\backend\devops\Repository\AuthRepository.cs:line 49
+2026-05-09 21:23:00 [Error] ExecuteCommandAsync query execution error
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+   at System.Data.Common.DbConnection.OpenAsync()
+   at devops.Helpers.SqlHelper.ExecuteCommandAsync(String query, SqlParameter[] parameters) in D:\workspace\Project Testing\Project 02\backend\devops\Helpers\SqlHelper.cs:line 27
+2026-05-09 21:23:03 [Error] RegisterUserAsync FN
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+   at System.Data.Common.DbConnection.OpenAsync()
+   at devops.Helpers.SqlHelper.ExecuteCommandAsync(String query, SqlParameter[] parameters) in D:\workspace\Project Testing\Project 02\backend\devops\Helpers\SqlHelper.cs:line 27
+   at devops.Repository.AuthRepository.RegisterUserAsync(Registration registration) in D:\workspace\Project Testing\Project 02\backend\devops\Repository\AuthRepository.cs:line 49
+2026-05-09 21:23:08 [Information] Application Started
+2026-05-09 21:24:34 [Information] Application Started
+2026-05-09 21:26:42 [Information] Application Started
+2026-05-09 21:27:28 [Information] Application Started
+2026-05-09 21:27:35 [Information] Application Started
+2026-05-09 21:28:07 [Information] Application Started
+2026-05-09 21:30:24 [Information] Application Started

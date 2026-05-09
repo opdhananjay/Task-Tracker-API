@@ -1,0 +1,26 @@
+﻿CREATE TABLE Users (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+
+    FirstName NVARCHAR(100) NOT NULL,
+    LastName NVARCHAR(50) NULL,
+
+    Email NVARCHAR(150) NOT NULL UNIQUE,
+
+    PasswordSalt NVARCHAR(500) NOT NULL,
+    PasswordHash NVARCHAR(500) NOT NULL,
+
+    Role NVARCHAR(50) NOT NULL,
+
+    Department NVARCHAR(100) NULL,
+    PhoneNumber NVARCHAR(20) NULL,
+    EmployeeId NVARCHAR(50) NULL,
+
+    CompanyName NVARCHAR(150) NULL,
+
+    IsActive BIT NOT NULL DEFAULT 1,
+
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL
+)
+
+
