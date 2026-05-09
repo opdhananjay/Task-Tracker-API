@@ -21,7 +21,7 @@ namespace devops.Helpers
         public static bool VerifyPassword(string enteredPassword,string storedHash,string storedSalt)
         {
             byte[] saltBytes = Convert.FromBase64String(storedSalt);
-            using(var pbkdf2 = new Rfc2898DeriveBytes(enteredPassword, saltBytes, 10000, HashAlgorithmName.SHA256))
+            using(var pbkdf2 = new Rfc2898DeriveBytes(enteredPassword, saltBytes, 1000, HashAlgorithmName.SHA256))
             {
                 byte[] hash = pbkdf2.GetBytes(32);
                 return Convert.ToBase64String(hash) == storedHash;

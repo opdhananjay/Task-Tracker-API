@@ -29,13 +29,18 @@ try
 
     // Start
 
+    var allowedOrigins = builder.Configuration
+        .GetSection("CorsSettings:AllowedOrigins")
+        .Get<string[]>();
+
     builder.Services.AddCors(options =>
     {
-        options.AddPolicy("AllowAll",
-            policy => policy
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+        options.AddPolicy("AllowReactApp", policy =>
+        {
+            policy.WithOrigins(allowedOrigins)
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+        });
     });
 
     builder.Services.AddSingleton<PasswordHelper>();
@@ -50,17 +55,18 @@ try
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
+    if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     {
         app.UseSwagger();
         app.UseSwaggerUI();
     }
 
+
     app.UseMiddleware<GlobalExceptionMiddleware>();  // Add Middlewares
 
     app.UseHttpsRedirection();
 
-    app.UseCors("AllowAll");
+    app.UseCors("AllowReactApp");
 
     app.UseAuthorization();
 
