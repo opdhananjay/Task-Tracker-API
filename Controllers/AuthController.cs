@@ -51,5 +51,17 @@ namespace devops.Controllers
         }
 
 
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(Login login)
+        {
+            if(string.IsNullOrEmpty(login.Email) || string.IsNullOrEmpty(login.Password))
+            {
+                return BadRequest(new ApiResponse<object>(false, 400, "email and password required"));
+            }
+
+            var response = await authRepository.LoginAsync(login);
+            return StatusCode(response.StatusCode, response);
+        }
+
     }
 }

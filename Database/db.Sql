@@ -1,4 +1,4 @@
-﻿CREATE TABLE Users (
+﻿    CREATE TABLE Users (
     Id INT PRIMARY KEY IDENTITY(1,1),
 
     FirstName NVARCHAR(100) NOT NULL,

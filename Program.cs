@@ -38,7 +38,7 @@ try
                 .AllowAnyHeader());
     });
 
-    builder.Services.AddScoped<PasswordHelper>();
+    builder.Services.AddSingleton<PasswordHelper>();
 
     builder.Services.AddScoped<SqlHelper>();
 

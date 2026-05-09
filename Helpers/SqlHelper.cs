@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 using Serilog;
 
 namespace devops.Helpers
@@ -16,6 +17,8 @@ namespace devops.Helpers
             }
         }
 
+
+        // GENERAL FUNCTION (INSERT,UPDATE,DELETE)
         public async Task<int> ExecuteCommandAsync(string query, SqlParameter[] parameters = null)
         {
             try
@@ -41,5 +44,42 @@ namespace devops.Helpers
                 throw;
             }
         }
+
+
+        // Execute Query Return DataTable 
+        public async Task<DataTable> ExecuteQueryAsyc(string query, SqlParameter[] parameters = null)
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using(SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    await con.OpenAsync();
+                    using(SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        if(parameters != null && parameters.Length > 0)
+                        {
+                            cmd.Parameters.AddRange(parameters);
+                        }
+
+                        using(SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+
+                    }
+                }
+
+            }
+            catch(Exception ex)
+            {
+                Log.Error(ex, "ExecuteQueryAsyc query execution error");
+                throw;
+            }
+
+            return dataTable;
+        }
+
     }
 }

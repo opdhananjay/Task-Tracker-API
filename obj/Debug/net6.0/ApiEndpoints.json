@@ -11,6 +11,22 @@
   },
   {
     "ContainingType": "devops.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "devops.Models.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "devops.Controllers.AuthController",
     "Method": "Registration",
     "RelativePath": "api/Auth/Registration",
     "HttpMethod": "POST",

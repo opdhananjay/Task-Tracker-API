@@ -1,19 +1,17 @@
 ﻿using devops.Helpers;
 using devops.Models;
 using Serilog;
-using Microsoft.Data.SqlClient;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace devops.Repository
 {
     public class AuthRepository : IAuthRepository
     {
-        public readonly PasswordHelper _passwordHelper;
         public readonly SqlHelper _sqlHelper;
-        public readonly string _connectionString;
 
         public AuthRepository(PasswordHelper passwordHelper, SqlHelper sqlHelper)
         {
-            _passwordHelper = passwordHelper;
             _sqlHelper = sqlHelper;
         }
 
@@ -53,7 +51,7 @@ namespace devops.Repository
 
                 if (result > 0)
                 {
-                    return new ApiResponse<object>(true, 201, "User registered successfully");
+                    return new ApiResponse<object>(true, 200, "User registered successfully");
                 }
                 else
                 {
@@ -66,5 +64,43 @@ namespace devops.Repository
                 return new ApiResponse<object>(false, 500, $"An error occurred: {ex.Message}");
             }
         }
+
+
+        // Login Call 
+        public async Task<ApiResponse<object>> LoginAsync(Login login)
+        {
+            string query = "SELECT Id,Email,PasswordHash,PasswordSalt,Role,FirstName FROM Users WHERE Email = @Email";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@Email",login.Email)
+            };
+
+            DataTable dt = await _sqlHelper.ExecuteQueryAsyc(query, parameters);
+
+            if(dt.Rows.Count == 0)
+            {
+                return new ApiResponse<object>(false, 401, "User not found");
+            }
+
+            var userRow = dt.Rows[0];
+            string email = userRow["Email"].ToString();
+            string passwordHash = userRow["PasswordHash"].ToString();
+            string passwordSalt = userRow["PasswordSalt"].ToString();
+            string role = userRow["Role"].ToString();
+            int userId = (int)userRow["Id"];
+
+            // Verify password
+            bool isPasswordValid = PasswordHelper.VerifyPassword(login.Password,passwordHash, passwordSalt);
+
+            if (!isPasswordValid)
+            {
+                return new ApiResponse<object>(false, 401, "Invalid password");
+            }
+
+            return new ApiResponse<object>(true, 200, "Login successful", new { UserId = userId, Email = email, Role = role });
+        }
+
+
     }
 }
