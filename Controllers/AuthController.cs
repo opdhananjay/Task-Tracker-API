@@ -63,5 +63,46 @@ namespace devops.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
+        [HttpPost("ResetPassword")]
+        public async Task<IActionResult> ResetPassword(ResetPassword resetPassword)
+        {
+            if(string.IsNullOrEmpty(resetPassword.Email) || string.IsNullOrEmpty(resetPassword.Password))
+            {
+                return BadRequest(new ApiResponse<object>(false, 400, "email and password is required", null));
+            }
+
+            var result = await authRepository.ResetPasswordAsync(resetPassword);
+            return StatusCode(result.StatusCode, result);
+        }
+
+        [HttpPost("RemoveUser/{userId}")]
+        public async Task<IActionResult> RemoveUser(int userId)
+        {
+            if (userId <= 0)
+            {
+                return BadRequest(new ApiResponse<object>(false, 400, "valid user id is required"));
+            }
+
+            var response = await authRepository.RemoveUserAsync(userId);
+            return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpPut("UpdateUser")]
+        public async Task<IActionResult> UpdateUser(UpdateUser updateUser)
+        {
+            if (updateUser.Id <= 0)
+            {
+                return BadRequest(new ApiResponse<object>(false, 400, "valid user id is required"));
+            }
+
+            if (string.IsNullOrEmpty(updateUser.FirstName))
+            {
+                return BadRequest(new ApiResponse<object>(false, 400, "first name is required"));
+            }
+
+            var response = await authRepository.UpdateUserAsync(updateUser);
+            return StatusCode(response.StatusCode, response);
+        }
     }
+
 }

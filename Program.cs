@@ -49,7 +49,10 @@ try
 
     builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
-   
+    builder.Services.AddScoped<ITrackerRepository, TrackerRepository>();
+
+
+
     // End
 
     var app = builder.Build();

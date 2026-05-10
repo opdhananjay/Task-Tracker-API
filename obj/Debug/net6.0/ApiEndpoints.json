@@ -42,6 +42,96 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "devops.Controllers.AuthController",
+    "Method": "RemoveUser",
+    "RelativePath": "api/Auth/RemoveUser/{userId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "devops.Controllers.AuthController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Auth/ResetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resetPassword",
+        "Type": "devops.Models.ResetPassword",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "devops.Controllers.AuthController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/Auth/UpdateUser",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateUser",
+        "Type": "devops.Models.UpdateUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "devops.Controllers.TrackerController",
+    "Method": "CreateTask",
+    "RelativePath": "api/Tracker/CreateTask",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "task",
+        "Type": "devops.Models.CreateTask",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "devops.Controllers.TrackerController",
+    "Method": "GetTasks",
+    "RelativePath": "api/Tracker/GetTasks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "devops.Controllers.TrackerController",
+    "Method": "UpdateTask",
+    "RelativePath": "api/Tracker/UpdateTask",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "task",
+        "Type": "devops.Models.CreateTask",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "devops.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",
