@@ -96,6 +96,7 @@ namespace devops.Repository
             string passwordSalt = userRow["PasswordSalt"].ToString();
             string role = userRow["Role"].ToString();
             int userId = (int)userRow["Id"];
+            string organizationId = userRow["OrganizationId"].ToString();
 
             // Verify password
             bool isPasswordValid = PasswordHelper.VerifyPassword(login.Password,passwordHash, passwordSalt);
@@ -105,7 +106,7 @@ namespace devops.Repository
                 return new ApiResponse<object>(false, 401, "Invalid password");
             }
 
-            return new ApiResponse<object>(true, 200, "Login successful", new { UserId = userId, Email = email, Role = role });
+            return new ApiResponse<object>(true, 200, "Login successful", new { UserId = userId, Email = email, Role = role, OrganizationId = organizationId });
         }
 
         public async Task<ApiResponse<object>> ResetPasswordAsync(ResetPassword resetPassword)
@@ -269,6 +270,56 @@ namespace devops.Repository
                 Log.Error(ex, "UpdateUserAsync FN");
                 return new ApiResponse<object>(false, 500, $"An error occurred: {ex.Message}");
             }
+        }
+
+        public async Task<ApiResponse<object>> GetUsers(string? OrgId)
+        {
+            string query = "";
+
+            SqlParameter[] parameters = null;
+
+            if (!string.IsNullOrEmpty(OrgId))
+            {
+                query = @"SELECT * FROM Users WHERE OrganizationId = @OrganizationId";
+
+                parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@OrganizationId",OrgId)
+                };
+            }
+            else
+            {
+                query = @"SELECT * FROM Users";
+            }
+
+
+            DataTable dt = await _sqlHelper.ExecuteQueryAsyc(query, parameters);
+
+            if (dt.Rows.Count == 0)
+            {
+                return new ApiResponse<object>(false, 400, "No data found");
+            }
+
+            var jsonData = (from DataRow row in dt.Rows
+                            select new 
+                            {
+                               Id = row["Id"].ToString(),
+                               FirstName = row["FirstName"].ToString(),
+                               LastName = row["LastName"].ToString(),
+                               Email = row["Email"].ToString(),
+                               Role = row["Role"].ToString(),
+                               Department = row["Department"].ToString(),
+                               PhoneNumber = row["PhoneNumber"].ToString(),
+                               EmployeeId = row["EmployeeId"].ToString(),
+                               CompanyName = row["CompanyName"].ToString(),
+                               IsActive = (bool)row["IsActive"],
+                               CreatedAt = row["CreatedAt"].ToString(),
+                               UpdatedAt = row["UpdatedAt"].ToString(),
+                               OrganizationId = row["OrganizationId"].ToString()
+
+                            }).ToList();
+
+            return new ApiResponse<object>(true, 200, "success", jsonData);
         }
     }
 }

@@ -10,5 +10,7 @@ namespace devops.Repository
         Task<ApiResponse<object>> ResetPasswordAsync(ResetPassword resetPassword);
         Task<ApiResponse<object>> RemoveUserAsync(int userId);
         Task<ApiResponse<object>> UpdateUserAsync(UpdateUser updateUser);
+
+        Task<ApiResponse<object>> GetUsers(string? Id);
     }   
 }

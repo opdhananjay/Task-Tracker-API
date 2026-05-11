@@ -3,6 +3,7 @@ using devops.Models;
 using devops.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 
 namespace devops.Controllers
 {
@@ -102,6 +103,13 @@ namespace devops.Controllers
 
             var response = await authRepository.UpdateUserAsync(updateUser);
             return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpGet("GetUsers")]
+        public async Task<IActionResult> GetUsers(string? OrgId)
+        {
+            var result = await authRepository.GetUsers(OrgId);
+            return StatusCode(result.StatusCode, result);
         }
     }
 

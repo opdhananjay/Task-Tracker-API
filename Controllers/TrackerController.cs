@@ -62,8 +62,38 @@ namespace devops.Controllers
 
         #region Organization
 
+        [HttpPost("CreateOrg")]
+        public async Task<IActionResult> CreateOrganization(Organization organization)
+        {
+            if(string.IsNullOrEmpty(organization.OrganizationName) || organization.CreatedBy == null)
+            {
+                return BadRequest(new ApiResponse<object>(false,400,"org name & created by required",null));
+            }
 
+            var result = await _trackerRepository.CreateUpdateOrganizationAsync(organization);
 
+            return StatusCode(result.StatusCode, result);
+        }
+
+        [HttpPut("UpdateOrg")]
+        public async Task<IActionResult> UpdateOrganization(Organization organization)
+        {
+            if (string.IsNullOrEmpty(organization.OrganizationName))
+            {
+                return BadRequest(new ApiResponse<object>(false, 400, "org name & id required", null));
+            }
+
+            var result = await _trackerRepository.CreateUpdateOrganizationAsync(organization);
+
+            return StatusCode(result.StatusCode, result);
+        }
+
+        [HttpGet("GetOrganization")]
+        public async Task<IActionResult> GetOrg(string? orgId)
+        {
+            var result = await _trackerRepository.GetOrganization(orgId);
+            return StatusCode(result.StatusCode, result);
+        }
 
         #endregion Organization
 

@@ -11,6 +11,22 @@
   },
   {
     "ContainingType": "devops.Controllers.AuthController",
+    "Method": "GetUsers",
+    "RelativePath": "api/Auth/GetUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "OrgId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "devops.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/Auth/Login",
     "HttpMethod": "POST",
@@ -91,6 +107,22 @@
   },
   {
     "ContainingType": "devops.Controllers.TrackerController",
+    "Method": "CreateOrganization",
+    "RelativePath": "api/Tracker/CreateOrg",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "organization",
+        "Type": "devops.Models.Organization",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "devops.Controllers.TrackerController",
     "Method": "CreateTask",
     "RelativePath": "api/Tracker/CreateTask",
     "HttpMethod": "POST",
@@ -107,12 +139,44 @@
   },
   {
     "ContainingType": "devops.Controllers.TrackerController",
+    "Method": "GetOrg",
+    "RelativePath": "api/Tracker/GetOrganization",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orgId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "devops.Controllers.TrackerController",
     "Method": "GetTasks",
     "RelativePath": "api/Tracker/GetTasks",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "devops.Controllers.TrackerController",
+    "Method": "UpdateOrganization",
+    "RelativePath": "api/Tracker/UpdateOrg",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "organization",
+        "Type": "devops.Models.Organization",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

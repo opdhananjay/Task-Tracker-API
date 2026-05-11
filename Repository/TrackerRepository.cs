@@ -2,6 +2,7 @@
 using devops.Models;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace devops.Repository
 {
@@ -135,5 +136,138 @@ namespace devops.Repository
 
             return new ApiResponse<object>(true, 200, "Task list retrieved successfully", jsonData);
         }
+
+
+        #region "Organization"
+        public async Task<ApiResponse<object>> CreateUpdateOrganizationAsync(Organization organization)
+        {
+            string query = "";
+
+            if (organization.Id == null)
+            {
+                query = @"
+                        INSERT INTO Organizations
+                        (
+                            OrganizationName,
+                            Email,
+                            PhoneNumber,
+                            Address,
+                            OrganizationType,
+                            CreatedBy
+                        ) 
+                        VALUES
+                        (
+                            @OrganizationName,
+                            @Email,
+                            @PhoneNumber,
+                            @Address,
+                            @OrganizationType,
+                            @CreatedBy
+                        )";
+            }
+            else
+            {
+                query = @"
+                        UPDATE Organizations
+                        SET 
+                            OrganizationName = @OrganizationName,
+                            Email = @Email,
+                            PhoneNumber = @PhoneNumber,
+                            Address = @Address,
+                            OrganizationType = @OrganizationType,
+                            UpdatedAt = @UpdatedAt
+                        WHERE Id = @Id";
+            }
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@Id", organization.Id ?? (object)DBNull.Value),
+                new SqlParameter("@OrganizationName", organization.OrganizationName),
+                new SqlParameter("@Email",
+                    organization.Email ?? (object)DBNull.Value),
+                new SqlParameter("@PhoneNumber",
+                    organization.PhoneNumber ?? (object)DBNull.Value),
+                new SqlParameter("@Address",
+                    organization.Address ?? (object)DBNull.Value),
+                new SqlParameter("@OrganizationType",
+                    organization.OrganizationType ?? (object)DBNull.Value),
+                new SqlParameter("@CreatedBy", organization.CreatedBy),
+                new SqlParameter("@UpdatedAt", DateTime.Now)
+            };
+
+            var result = await _sqlHelper.ExecuteCommandAsync(
+                query,
+                parameters
+            );
+
+            if (result > 0)
+            {
+                return new ApiResponse<object>(
+                    true,
+                    200,
+                    organization.Id == null
+                        ? "Organization created successfully"
+                        : "Organization updated successfully",
+                    null
+                );
+            }
+
+            return new ApiResponse<object>(
+                false,
+                400,
+                "Operation failed"
+            );
+        }
+
+        public async Task<ApiResponse<object>> GetOrganization(string? Id)
+        {
+            string query = "";
+
+            SqlParameter[] parameters = null;
+
+            if (!string.IsNullOrEmpty(Id))
+            {
+                query = @"SELECT * FROM Organizations WHERE Id = @Id";
+
+                parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@Id",Id)
+                };
+            }
+            else
+            {
+                query = @"SELECT * FROM Organizations";
+            }
+
+
+            DataTable dt = await _sqlHelper.ExecuteQueryAsyc(query, parameters);
+            
+            if(dt.Rows.Count == 0)
+            {
+                return new ApiResponse<object>(false, 400, "No data found");
+            }
+
+            var jsonData = (from DataRow row in dt.Rows
+                            select new 
+                            {
+                                Id = row["Id"].ToString(),
+                                OrganizationName = row["OrganizationName"].ToString(),
+                                Email = row["Email"].ToString(),
+                                PhoneNumber = row["PhoneNumber"].ToString(),
+                                Address = row["Address"].ToString(),
+                                OrganizationType = row["OrganizationType"].ToString(),
+                                CreatedBy = row["CreatedBy"].ToString(),
+                                CreatedAt = row["CreatedAt"].ToString(),
+                                UpdatedAt = row["UpdatedAt"].ToString()
+
+                            }).ToList();
+
+            return new ApiResponse<object>(true, 200, "success", jsonData);
+
+        }
+
+
+        #endregion "Organization"
+
     }
 }
